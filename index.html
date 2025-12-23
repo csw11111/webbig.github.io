@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>零食小铺 - 首页</title>
+    <!-- 使用正确的相对路径 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- 网站Logo -->
+                <a href="index.html" class="logo">
+                    <i class="fas fa-cookie-bite"></i>
+                    <span>零食小铺</span>
+                </a>
+                
+                <!-- 搜索框 -->
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索零食...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <!-- 导航菜单 -->
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="html/products.html"><i class="fas fa-store"></i> 商品</a></li>
+                    <li><a href="html/cart.html"><i class="fas fa-shopping-cart"></i> 购物车 <span id="cart-count">0</span></a></li>
+                    <li><a href="html/profile.html"><i class="fas fa-user"></i> 个人中心</a></li>
+                    <li><a href="html/login.html" id="login-link"><i class="fas fa-sign-in-alt"></i> 登录/注册</a></li>
+                </ul>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 轮播图区域 -->
+        <section class="hero">
+            <div class="carousel">
+                <div class="carousel-slides">
+                    <div class="slide active">
+                        <div class="slide-content">
+                            <h2>新鲜零食每日到</h2>
+                            <p>精选全球美味零食，满足你的味蕾</p>
+                            <a href="html/products.html" class="btn">立即选购</a>
+                        </div>
+                        <!-- 使用在线图片作为临时解决方案 -->
+                       <div class="slide-img" style="background-image: url('images/lunbo1.png');"></div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>限时特惠</h2>
+                            <p>第二件半价，多买多优惠</p>
+                            <a href="html/products.html" class="btn">查看详情</a>
+                        </div>
+                        <div class="slide-img" style="background-image: url('images/lunbo2.png');"></div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <h2>新品上市</h2>
+                            <p>尝鲜价8折，快来试试吧</p>
+                            <a href="html/products.html" class="btn">尝鲜去</a>
+                        </div>
+                        <div class="slide-img" style="background-image: url('images/lunbo3.png');"></div>
+                    </div>
+                </div>
+                <!-- 轮播图控制按钮 -->
+                <div class="carousel-controls">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <!-- 轮播图指示器 -->
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分类区域 -->
+        <section class="categories">
+            <div class="container">
+                <h2 class="section-title">零食分类</h2>
+                <div class="category-list">
+                    <div class="category-card" data-category="chips">
+                        <div class="category-icon">
+                            <i class="fas fa-cookie"></i>
+                        </div>
+                        <h3>膨化食品</h3>
+                    </div>
+                    <div class="category-card" data-category="candy">
+                        <div class="category-icon">
+                            <i class="fas fa-candy-cane"></i>
+                        </div>
+                        <h3>糖果巧克力</h3>
+                    </div>
+                    <div class="category-card" data-category="drinks">
+                        <div class="category-icon">
+                            <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h3>饮料冲饮</h3>
+                    </div>
+                    <div class="category-card" data-category="biscuit">
+                        <div class="category-icon">
+                            <i class="fas fa-bread-slice"></i>
+                        </div>
+                        <h3>饼干糕点</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 推荐商品区域 -->
+        <section class="featured-products">
+            <div class="container">
+                <h2 class="section-title">热销推荐</h2>
+                <div class="product-grid">
+                    <!-- 商品卡片将通过JavaScript动态加载 -->
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="薯片大礼包">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">薯片大礼包</h3>
+                            <p class="product-desc">精选多种口味薯片，满足不同口味需求</p>
+                            <div class="product-price">¥29.90</div>
+                            <div class="product-actions">
+                                <button class="btn view-detail">查看详情</button>
+                                <button class="btn add-to-cart">加入购物车</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- 添加更多商品卡片 -->
+                </div>
+                <div class="text-center">
+                    <a href="html/products.html" class="btn btn-large">浏览所有商品</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于零食小铺</h3>
+                    <p>我们致力于为您提供最新鲜、最美味、最健康的零食选择。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>学号: 25216950228</p>
+                    <p>姓名: 陈稣伟</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 零食小铺 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

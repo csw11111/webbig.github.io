@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 零食小铺</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-cookie-bite"></i>
+                    <span>零食小铺</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="products.html"><i class="fas fa-store"></i> 商品</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> 购物车 <span id="cart-count">0</span></a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i> 个人中心</a></li>
+                    <li><a href="register.html" id="login-link" class="active"><i class="fas fa-sign-in-alt"></i> 登录/注册</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 注册表单 -->
+    <div class="form-container">
+        <h2 class="form-title">注册</h2>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="register-name">用户名</label>
+                <input type="text" id="register-name" required>
+            </div>
+            <div class="form-group">
+                <label for="register-email">邮箱</label>
+                <input type="email" id="register-email" required>
+            </div>
+            <div class="form-group">
+                <label for="register-password">密码</label>
+                <input type="password" id="register-password" required>
+            </div>
+            <div class="form-group">
+                <label for="register-confirm-password">确认密码</label>
+                <input type="password" id="register-confirm-password" required>
+            </div>
+            <div class="form-error" id="register-error"></div>
+            <button type="submit" class="btn btn-large">注册</button>
+        </form>
+        <div class="form-footer">
+            <p>已有账号？ <a href="login.html">立即登录</a></p>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于零食小铺</h3>
+                    <p>我们致力于为您提供最新鲜、最美味、最健康的零食选择。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>学号: 25216950228</p>
+                    <p>姓名: 陈稣伟</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 零食小铺 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心 - 零食小铺</title>
+    <!-- 添加CSS链接 -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-cookie-bite"></i>
+                    <span>零食小铺</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="products.html"><i class="fas fa-store"></i> 商品</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> 购物车 <span id="cart-count">0</span></a></li>
+                    <li><a href="profile.html" class="active"><i class="fas fa-user"></i> 个人中心</a></li>
+                    <li><a href="login.html" id="login-link"><i class="fas fa-sign-in-alt"></i> 登录/注册</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 个人中心内容 -->
+    <main class="main-content">
+        <div class="container">
+            <div class="profile-container">
+                <h2 class="page-title">个人中心</h2>
+                <div class="profile-info">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3 id="user-name">用户姓名</h3>
+                        <p id="user-email">用户邮箱</p>
+                    </div>
+                    <div class="profile-actions">
+                        <a href="#" class="profile-action-btn">
+                            <i class="fas fa-shopping-bag"></i> 我的订单
+                        </a>
+                        <a href="#" class="profile-action-btn">
+                            <i class="fas fa-heart"></i> 我的收藏
+                        </a>
+                        <a href="#" class="profile-action-btn">
+                            <i class="fas fa-cog"></i> 账户设置
+                        </a>
+                        <button id="logout-btn" class="profile-action-btn">
+                            <i class="fas fa-sign-out-alt"></i> 退出登录
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于零食小铺</h3>
+                    <p>我们致力于为您提供最新鲜、最美味、最健康的零食选择。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>学号: 25216950228</p>
+                    <p>姓名: 陈稣伟</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 零食小铺 版权所有</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- 添加JS链接 -->
+    <script src="../js/main.js"></script>
+    <script>
+        // 检查登录状态，如果未登录则跳转到登录页
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = JSON.parse(localStorage.getItem('snackUser'));
+            if (!user) {
+                window.location.href = 'login.html';
+            } else {
+                // 显示用户信息
+                document.getElementById('user-name').textContent = user.name;
+                document.getElementById('user-email').textContent = user.email;
+                
+                // 更新购物车数量
+                if (typeof updateCartCount === 'function') {
+                    updateCartCount();
+                }
+                
+                // 更新登录状态
+                if (typeof checkLoginStatus === 'function') {
+                    checkLoginStatus();
+                }
+            }
+            
+            // 退出登录功能
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('snackUser');
+                window.location.href = '../index.html';
+            });
+        });
+    </script>
+</body>
+</html>

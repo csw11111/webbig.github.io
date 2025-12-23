@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车 - 零食小铺</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-cookie-bite"></i>
+                    <span>零食小铺</span>
+                </a>
+                
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索零食...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="products.html"><i class="fas fa-store"></i> 商品</a></li>
+                    <li><a href="cart.html" class="active"><i class="fas fa-shopping-cart"></i> 购物车 <span id="cart-count">0</span></a></li>
+                    <li><a href="profile.html"><i class="fas fa-user"></i> 个人中心</a></li>
+                    <li><a href="login.html" id="login-link"><i class="fas fa-sign-in-alt"></i> 登录/注册</a></li>
+                </ul>
+                
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 购物车内容 -->
+    <main class="main-content cart-container">
+        <div class="container">
+            <h1 class="page-title">我的购物车</h1>
+            
+            <!-- 购物车为空时的提示 -->
+            <div id="cart-empty" class="cart-empty" style="display: none;">
+                <div class="empty-cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h2>购物车空空如也</h2>
+                <p>快去挑选一些美味的零食吧！</p>
+                <a href="products.html" class="btn btn-large">去逛逛</a>
+            </div>
+            
+            <!-- 购物车有商品时的内容 -->
+            <div class="cart-content">
+                <div class="cart-items" id="cart-items">
+                    <!-- 购物车商品将通过JavaScript动态加载 -->
+                </div>
+                
+                <!-- 购物车操作按钮 -->
+                <div class="cart-actions">
+                    <button id="continue-shopping" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> 继续购物
+                    </button>
+                    <button id="clear-cart" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> 清空购物车
+                    </button>
+                </div>
+                
+                <!-- 购物车汇总 -->
+                <div class="cart-summary">
+                    <h3>订单汇总</h3>
+                    <div class="summary-row">
+                        <span>商品小计</span>
+                        <span id="cart-subtotal">¥0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>运费</span>
+                        <span>¥0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>优惠</span>
+                        <span>-¥0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>总计</span>
+                        <span id="cart-total">¥0.00</span>
+                    </div>
+                    <div class="summary-action">
+                        <button id="checkout-btn" class="btn btn-large btn-checkout">
+                            <i class="fas fa-credit-card"></i> 去结算
+                        </button>
+                        <p class="secure-checkout">
+                            <i class="fas fa-lock"></i> 安全支付保障
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 推荐商品 -->
+            <div class="cart-recommendations">
+                <h3>您可能还会喜欢</h3>
+                <div class="recommended-products">
+                    <!-- 推荐商品将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于零食小铺</h3>
+                    <p>我们致力于为您提供最新鲜、最美味、最健康的零食选择。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>学号: 25216950228</p>
+                    <p>姓名: 陈稣伟</p>
+                </div>
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 零食小铺 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+        // 购物车页面的特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化购物车显示
+            if (typeof displayCartItems === 'function') {
+                displayCartItems();
+            }
+            
+            // 加载推荐商品
+            loadRecommendedProducts();
+            
+            // 检查用户登录状态
+            checkLoginStatus();
+        });
+        
+        // 加载推荐商品
+        function loadRecommendedProducts() {
+            const recommendedContainer = document.querySelector('.recommended-products');
+            if (!recommendedContainer) return;
+            
+            // 模拟推荐商品数据
+            const recommendedProducts = [
+                {
+                    id: 101,
+                    name: '坚果混合包',
+                    price: 25.9,
+                    image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                },
+                {
+                    id: 102,
+                    name: '水果干礼盒',
+                    price: 32.5,
+                    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                },
+                {
+                    id: 103,
+                    name: '牛奶饼干',
+                    price: 15.8,
+                    image: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                },
+                {
+                    id: 104,
+                    name: '巧克力棒',
+                    price: 12.5,
+                    image: 'https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+                }
+            ];
+            
+            let html = '';
+            recommendedProducts.forEach(product => {
+                html += `
+                    <div class="recommended-product">
+                        <div class="recommended-img">
+                            <img src="${product.image}" alt="${product.name}">
+                        </div>
+                        <div class="recommended-info">
+                            <h4>${product.name}</h4>
+                            <div class="recommended-price">¥${product.price.toFixed(2)}</div>
+                            <button class="btn btn-small add-recommended" 
+                                    data-id="${product.id}"
+                                    data-name="${product.name}"
+                                    data-price="${product.price}"
+                                    data-image="${product.image}">
+                                加入购物车
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            recommendedContainer.innerHTML = html;
+            
+            // 为推荐商品按钮添加事件
+            const addButtons = document.querySelectorAll('.add-recommended');
+            addButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const image = this.getAttribute('data-image');
+                    
+                    if (typeof addToCart === 'function') {
+                        addToCart(id, name, price, image);
+                        // 重新显示购物车内容
+                        if (typeof displayCartItems === 'function') {
+                            displayCartItems();
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
